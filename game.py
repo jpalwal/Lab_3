@@ -3,20 +3,7 @@ import enum
 import numpy
 
 
-class MarkSquare(enum.Enum):
-    FREE = 0
-    CIRCLE = 'o'
-    CROSS = 'x'
-
-
-class CheckGameResult(enum.Enum):
-    PLAYING = 0
-    CIRCLE = 'o'
-    CROSS = 'x'
-    DRAW = 'r'
-
-
-class Game():
+class Game:
     def __init__(self, board_size):
         self.checkMove = validator.InputExpressionValidator
         self.user = MarkSquare.CROSS
@@ -53,3 +40,17 @@ class Game():
             else:
                 return CheckGameResult.CROSS
         return CheckGameResult.PLAYING
+
+
+class MarkSquare(enum.Enum):
+    FREE = 0
+    CIRCLE = 'o'
+    CROSS = 'x'
+
+
+class CheckGameResult(enum.Enum):
+    PLAYING = 0
+    CIRCLE = 'o'
+    CROSS = 'x'
+    DRAW = 'r'
+
