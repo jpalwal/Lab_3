@@ -57,17 +57,17 @@ class CheckGameResult(enum.Enum):
 
 class MakeAndPrintBoard(Game):
     @staticmethod
-    def print_board:
+    def print_board(board):
         print('\n')
         print('\t')
-        print(''.join([i for i in range(len(Game.board))]))
-        for i in range(len(Game.board)):
+        print(''.join([i for i in range(len(board))]))
+        for i in range(len(board)):
             marker = '{}\t'.format(i)
-            for j in range(len(Game.board[i])):
-                if Game.board[i][j] == MarkSquare.FREE:
+            for j in range(len(board[i])):
+                if board[i][j] == MarkSquare.FREE:
                     marker.join('_')
-                elif Game.board[i][j] == MarkSquare.CROSS:
+                elif board[i][j] == MarkSquare.CROSS:
                     marker.join('X')
-                elif Game.board[i][j] == MarkSquare.CIRCLE:
+                elif board[i][j] == MarkSquare.CIRCLE:
                     marker.join('O')
             print(marker)
