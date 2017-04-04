@@ -72,4 +72,8 @@ class MakeAndPrintBoard(Game):
                     marker.join('X')
                 elif board[i][j] == MarkSquare.CIRCLE:
                     marker.join('O')
+            marker.join('\t')
+            marker.join(i)
             print(marker)
+        print('\t')
+        print(''.join([i for i in range(len(board))]))
