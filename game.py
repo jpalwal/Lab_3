@@ -1,6 +1,5 @@
 import validator
 import enum
-import numpy
 
 
 class Game:
