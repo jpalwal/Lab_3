@@ -54,3 +54,20 @@ class CheckGameResult(enum.Enum):
     CROSS = 'x'
     DRAW = 'r'
 
+
+class MakeAndPrintBoard(Game):
+    @staticmethod
+    def print_board:
+        print('\n')
+        print('\t')
+        print(''.join([i for i in range(len(Game.board))]))
+        for i in range(len(Game.board)):
+            marker = '{}\t'.format(i)
+            for j in range(len(Game.board[i])):
+                if Game.board[i][j] == MarkSquare.FREE:
+                    marker.join('_')
+                elif Game.board[i][j] == MarkSquare.CROSS:
+                    marker.join('X')
+                elif Game.board[i][j] == MarkSquare.CIRCLE:
+                    marker.join('O')
+            print(marker)
