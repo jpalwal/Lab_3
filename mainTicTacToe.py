@@ -6,6 +6,7 @@ if __name__=='__main__':
     tic_tac_toe = game.Game(board_size)
     game.MakeAndPrintBoard.print_board(tic_tac_toe)
 
+
     while 1==1:
         if tic_tac_toe.computer_turn():
             x = random.randint(0,board_size-1)
