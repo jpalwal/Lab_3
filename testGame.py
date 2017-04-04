@@ -1,6 +1,5 @@
 import unittest
 import game
-import validator
 
 
 class TestGame(unittest.TestCase):
