@@ -58,6 +58,7 @@ class CheckGameResult(enum.Enum):
     DRAW = 'r'
 
 
+# zapis jest źle
 class MakeAndPrintBoard():
     @staticmethod
     def print_board(board):
