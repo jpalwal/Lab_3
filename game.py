@@ -21,7 +21,7 @@ class Game:
                 return False
 
     def switch_player(self):
-        self.nowPlaying = 'u' if self.nowPlaying == 'c' else  'c'
+        self.nowPlaying = 'u' if self.nowPlaying == 'c' else 'c'
 
     def game_over(self):
         if not self.emptySquares:
@@ -39,6 +39,9 @@ class Game:
             else:
                 return CheckGameResult.CROSS
         return CheckGameResult.PLAYING
+
+    def computer_turn(self):
+        return self.nowPlaying == 'c'
 
 
 class MarkSquare(enum.Enum):
