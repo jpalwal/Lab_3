@@ -5,16 +5,14 @@ import enum
 class Game:
     def __init__(self, board_size):
         self.checkMove = validator.InputExpressionValidator
-        self.user = MarkSquare.CROSS
-        self.computer = MarkSquare.CIRCLE
         self.emptySquares = board_size**2
-        self.board = [[MarkSquare.FREE for y in range(board_size)] for x in range(board_size)]
+        self.board = [[MarkSquare.FREE for x in range(board_size)] for y in range(board_size)]
         self.nowPlaying = 'u'
 
     def choose_square(self,x,y):
         if self.checkMove.validate(x,y, len(self.board)):
-            if self.board[x][y] == MarkSquare.FREE:
-                self.board[x][y] = self.user if self.nowPlaying == 'u' else self.computer
+            if self.board[y][x] == MarkSquare.FREE:
+                self.board[y][x] = MarkSquare.CROSS if self.nowPlaying == 'u' else MarkSquare.CIRCLE
                 self.emptySquares -= 1
                 return True
             else:
