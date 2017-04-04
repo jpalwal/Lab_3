@@ -43,6 +43,9 @@ class Game:
     def computer_turn(self):
         return self.nowPlaying == 'c'
 
+    def board(self):
+        return self.board
+
 
 class MarkSquare(enum.Enum):
     FREE = 0
@@ -57,23 +60,23 @@ class CheckGameResult(enum.Enum):
     DRAW = 'r'
 
 
-class MakeAndPrintBoard(Game):
+class MakeAndPrintBoard():
     @staticmethod
     def print_board(board):
         print('\n')
         print('\t')
-        print(''.join([i for i in range(len(board))]))
-        for i in range(len(board)):
+        print(''.join(str([i for i in range(len(board.board))])))
+        for i in range(len(board.board)):
             marker = '{}\t'.format(i)
-            for j in range(len(board[i])):
-                if board[i][j] == MarkSquare.FREE:
+            for j in range(len(board.board[i])):
+                if board.board[i][j] == MarkSquare.FREE:
                     marker.join('_')
-                elif board[i][j] == MarkSquare.CROSS:
+                elif board.board[i][j] == MarkSquare.CROSS:
                     marker.join('X')
-                elif board[i][j] == MarkSquare.CIRCLE:
+                elif board.board[i][j] == MarkSquare.CIRCLE:
                     marker.join('O')
             marker.join('\t')
-            marker.join(i)
+            marker.join(str(i))
             print(marker)
         print('\t')
-        print(''.join([i for i in range(len(board))]))
+        print(''.join(str([i for i in range(len(board.board))])))

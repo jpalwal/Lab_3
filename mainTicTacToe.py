@@ -7,7 +7,7 @@ if __name__=='__main__':
     game.MakeAndPrintBoard.print_board(tic_tac_toe)
 
     while 1==1:
-        if game.Game.computer_turn():
+        if tic_tac_toe.computer_turn():
             x = random.randint(0,board_size-1)
             y = random.randint(0,board_size-1)
         else:
@@ -15,15 +15,15 @@ if __name__=='__main__':
             x = int(input())
             print('Enter y value: 0 - ', board_size - 1)
             y = int(input())
-        if game.Game.game_over():
+        if tic_tac_toe.game_over():
             game.MakeAndPrintBoard.print_board(tic_tac_toe)
-            if game.Game.game_over() == 'x':
+            if tic_tac_toe.game_over() == 'x':
                 print('The winner is cross')
-            if game.Game.game_over() == 'o':
+            if tic_tac_toe.game_over() == 'o':
                 print('The winner is circle')
-            if game.Game.game_over() == 'r':
+            if tic_tac_toe.game_over() == 'r':
                 print('No winner')
             break
-        game.Game.switch_player()
-        if not game.Game.computer_turn():
+        tic_tac_toe.switch_player()
+        if not tic_tac_toe.computer_turn():
             game.MakeAndPrintBoard.print_board(tic_tac_toe)
