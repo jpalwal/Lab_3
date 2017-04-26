@@ -1,13 +1,21 @@
 import game
 import random
+import socket
 
 if __name__=='__main__':
+
+    #setting up a server
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    serverAdress = ('', 6789)
+    sock.bind(serverAdress)
+    print('Starting up on ', sock.getsockname())
+    sock.listen(1)
+
     board_size = 5
     tic_tac_toe = game.Game(board_size)
     game.MakeAndPrintBoard.print_board(tic_tac_toe)
 
-
-    while 1==1:
+    while True:
         if tic_tac_toe.computer_turn():
             x = random.randint(0,board_size-1)
             y = random.randint(0,board_size-1)
@@ -28,3 +36,5 @@ if __name__=='__main__':
         tic_tac_toe.switch_player()
         if not tic_tac_toe.computer_turn():
             game.MakeAndPrintBoard.print_board(tic_tac_toe)
+
+    sock.close()
