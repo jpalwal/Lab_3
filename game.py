@@ -31,9 +31,7 @@ class Game:
         else:
             logging.info("field ({}, {}) is not empty and quit".format(x, y))
             return False
-        #else:
-         #   logging.info("wrong coordinates ({}, {})".format(x, y))
-          #  print("zle wspolrzedne")
+
 
     def switch_player(self):
         self.nowPlaying = 'u' if self.nowPlaying == 'c' else 'c'
@@ -127,29 +125,29 @@ class MakeAndPrintBoard():
         print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
 
 
-class Lan:
-    @staticmethod
-    def send_data(connection, data):
-        print("send_data")
-        connection.sendall('#start#{}#end'.format(data).encode('ASCII'))
-    @staticmethod
-    def request_data(connection):
-        print("request")
-        data=''
-        while True:
-            buffer=connection.recv(16)
-            data += buffer.decode('ASCII')
-            if '#end' in data:
-                break
-            elif '#start#' in data:
-                data = data.replace('#start#','')
-            elif buffer:
-                pass
-            else:
-                break
-        return data.replace('#start#','').replace('#end','')
-    @staticmethod
-    def send_and_request_data(connection, data):
-        print("send and request")
-        Lan.send_data(connection,data)
-        return Lan.request_data(connection)
+#class Lan:
+ #   @staticmethod
+  #  def send_data(connection, data):
+  #      print("send_data")
+  #      connection.sendall('#start#{}#end'.format(data).encode('ASCII'))
+  #  @staticmethod
+  #  def request_data(connection):
+  #      print("request")
+  #      data=''
+  #      while True:
+  #          buffer=connection.recv(16)
+  #          data += buffer.decode('ASCII')
+  #          if '#end' in data:
+  #              break
+  #          elif '#start#' in data:
+  #              data = data.replace('#start#','')
+   #         elif buffer:
+   #             pass
+   #         else:
+   #             break
+   #     return data.replace('#start#','').replace('#end','')
+   # @staticmethod
+   # def send_and_request_data(connection, data):
+   #     print("send and request")
+   #     Lan.send_data(connection,data)
+   #     return Lan.request_data(connection)
