@@ -1,15 +1,16 @@
 import game
 import random
-import socket
+from echo import MyEchoServer, MyEchoClient
 
 if __name__=='__main__':
 
-    #setting up a server
-    #sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    #serverAdress = ('', 6789)
-    #sock.bind(serverAdress)
-    #print('Starting up on ', sock.getsockname())
-    #sock.listen(1)
+    host = 'localhost'
+    port = 50001
+    data_size = 1024
+    #server = MyEchoServer(host, port, data_size)
+    #server.handle_connection()
+    client = MyEchoClient(host, port, data_size)
+    client.sendMsg("mmm")
 
     board_size = 5
     tic_tac_toe = game.Game(board_size)
@@ -41,5 +42,3 @@ if __name__=='__main__':
                 print('\n\nNo winner')
             break
 
-
-    #sock.close()
