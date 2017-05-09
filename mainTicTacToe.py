@@ -1,16 +1,7 @@
 import game
 import random
-from echo import MyEchoServer, MyEchoClient
 
 if __name__=='__main__':
-
-    host = 'localhost'
-    port = 50001
-    data_size = 1024
-    #server = MyEchoServer(host, port, data_size)
-    #server.handle_connection()
-    client = MyEchoClient(host, port, data_size)
-    client.sendMsg("mmm")
 
     board_size = 5
     tic_tac_toe = game.Game(board_size)
