@@ -19,21 +19,19 @@ class AbstractValidator(object):
 
 class InputExpressionValidator(AbstractValidator):
 
-    def __init__(self, coord_x, coord_y, board_size):
-        self.x = coord_x
-        self.y = coord_y
-        self.boardSize = board_size
-
-    def validate(self):
-        if not self._is_number():
+    @staticmethod
+    def validate(x,y,n):
+        if (not InputExpressionValidator._is_number(x)) and (not InputExpressionValidator._is_number(y)) and (not InputExpressionValidator._is_number(n)):
             raise NotANumber()
-        elif self._out_of_board():
+        elif InputExpressionValidator._out_of_board(x,n) or InputExpressionValidator._out_of_board(y,n):
             raise OutOfBoard()
         else:
             return True
 
-    def _is_number(self):
-        return isinstance(self.x, int) and isinstance(self.y, int) and isinstance(self.boardSize, int)
+    @staticmethod
+    def _is_number(a):
+        return isinstance(a, int)
 
-    def _out_of_board(self):
-        return (self.x < 0) or (self.y > self.boardSize) or (self.y < 0) or (self.y > self.boardSize)
+    @staticmethod
+    def _out_of_board(a,n):
+        return (a < 0) or (a > n)
