@@ -21,3 +21,12 @@ class MyEchoClient:
         server_address = (address, port)
         print('connecting to %s port %s' % server_address)
         self.sock.connect(server_address)
+
+
+if __name__=='__main__':
+
+    host = 'localhost'
+    port = 50001
+    data_size = 1024
+    client = MyEchoClient(host, port, data_size)
+    client.sendMsg("Hello")
