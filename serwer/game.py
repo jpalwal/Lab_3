@@ -4,16 +4,27 @@ import logging
 from os import path, remove
 
 class Game:
-    def __init__(self, board_size):
+    def __init__(self, board_size, server):
         self.checkMove = validator.InputExpressionValidator
         self.emptySquares = board_size**2
         self.board = [[MarkSquare.FREE for x in range(board_size)] for y in range(board_size)]
         self.nowPlaying = 'u'
         self.boardSize = board_size
+        self.server = server
         if path.isfile("game.log"):
             remove("game.log")
         logging.basicConfig(filename="game.log", level=logging.INFO)
         logging.info("Game initialization")
+
+
+    def print(self, msg):
+        self.server.handle_connection()
+        self.server.connection.send(msg)
+
+
+    def input(self):
+        self.server.handle_connection()
+        self.server.connection.recv(self.server.data_size)
 
 
     def choose_square(self,x,y):
@@ -81,8 +92,6 @@ class Game:
 
     def computer_turn(self):
         logging.info("checking whose turn it is")
-        print("check if comp turn")
-        print(self.nowPlaying == 'c')
         return self.nowPlaying == 'c'
 
     def board(self):
@@ -106,10 +115,13 @@ class CheckGameResult(enum.Enum):
 
 class MakeAndPrintBoard():
     @staticmethod
-    def print_board(board):
-        print("print_board")
-        print('\n')
-        print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
+    def print_board(board,server):
+        #print('\n')
+        msg = '\n'
+        server.connection.send(msg.encode())
+        #print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
+        msg = '\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))])
+        server.connection.send(msg.encode())
         for i in range(0, len(board.board)):
             marker=[]
             for j in range(0, len(board.board[i])):
@@ -121,5 +133,9 @@ class MakeAndPrintBoard():
                     marker.append('O')
                 else:
                     marker.append('_')
-            print(i, marker)
-        print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
+            #print(i, marker)
+            msg = i + marker
+            server.connection.send(msg.encode())
+        #print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
+        msg = '\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))])
+        server.connection.send(msg.encode())
