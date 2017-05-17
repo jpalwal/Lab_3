@@ -6,8 +6,8 @@ from os import path, remove
 class MyEchoServer:
     def __init__(self, address, port, data_size):
         self.data_size = data_size
-        self.createTcpIpSocket()
-        self.bindSocketToThePort(address, port)
+        self._createTcpIpSocket()
+        self._bindSocketToThePort(address, port)
         if path.isfile("server.log"):
             remove("server.log")
         logging.basicConfig(filename="server.log", level=logging.INFO)
@@ -25,11 +25,11 @@ class MyEchoServer:
             connection.send(data)
         connection.close()
 
-    def createTcpIpSocket(self):
+    def _createTcpIpSocket(self):
         logging.info("Socket created")
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    def bindSocketToThePort(self, address, port):
+    def _bindSocketToThePort(self, address, port):
         server_address = (address, port)
         print('bind to %s port %s' % server_address)
         self.sock.bind(server_address)
