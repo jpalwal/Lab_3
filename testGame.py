@@ -9,7 +9,7 @@ class TestGame(unittest.TestCase):
         tic_tac_toe = game.Game(board_size, 0)
         self.assertEqual(tic_tac_toe.game_over(), game.CheckGameResult.PLAYING)
 
-    def test_if_after_input_coords_draw_in_correct_square_and_end_game_when_there_is_a_winner(self):
+    def test_if_after_input_coords_draw_in_correct_square_and_end_game_when_there_is_a_winner_horizontally(self):
         board_size = 4
         tic_tac_toe = game.Game(board_size, 0)
         tic_tac_toe.choose_square(0,1)
@@ -18,7 +18,16 @@ class TestGame(unittest.TestCase):
         tic_tac_toe.choose_square(0,3)
         self.assertEqual(game.CheckGameResult.CROSS,tic_tac_toe.game_over())
 
-    def test_shoud_not_overrite_coords_if_ocupated(self):
+    def test_if_after_input_coords_draw_in_correct_square_and_end_game_when_there_is_a_winner_vertically(self):
+        board_size = 4
+        tic_tac_toe = game.Game(board_size, 0)
+        tic_tac_toe.choose_square(0,1)
+        tic_tac_toe.choose_square(1,1)
+        tic_tac_toe.choose_square(2,1)
+        tic_tac_toe.choose_square(3,1)
+        self.assertEqual(game.CheckGameResult.CROSS,tic_tac_toe.game_over())
+
+    def test_shoud_not_overwrite_coords_if_ocupated(self):
         board_size = 4
         tic_tac_toe = game.Game(board_size, 0)
         tic_tac_toe.choose_square(1,2)
