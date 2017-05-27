@@ -12,10 +12,14 @@ if __name__=='__main__':
             x = random.randint(0,board_size-1)
             y = random.randint(0,board_size-1)
         else:
-            print('Enter x value: 0 - ', board_size-1)
-            x = int(input())
-            print('Enter y value: 0 - ', board_size - 1)
-            y = int(input())
+            try:
+                print('Enter x value: 0 - ', board_size-1)
+                x = int(input())
+                print('Enter y value: 0 - ', board_size - 1)
+                y = int(input())
+            except ValueError:
+                print("Coords have to be integers")
+                x,y = board_size, board_size
         if not tic_tac_toe.choose_square(x,y):
             print("Repeat move")
         is_over = tic_tac_toe.game_over()

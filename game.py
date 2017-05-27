@@ -20,7 +20,7 @@ class Game:
         logging.info("Check if coords are ok and if field ({}, {}) is emptyd to place a marker".format(x, y))
         try:
             self.checkMove.validate(x,y, len(self.board))
-        except validator.OutOfBoard():
+        except validator.OutOfBoard:
             logging.info("Cordinates ({}, {}) are invalid".format(x, y))
             return -1
         if self.board[y][x] == MarkSquare.FREE:

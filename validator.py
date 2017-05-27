@@ -22,9 +22,9 @@ class InputExpressionValidator(AbstractValidator):
     @staticmethod
     def validate(x,y,n):
         if (not InputExpressionValidator._is_number(x)) and (not InputExpressionValidator._is_number(y)) and (not InputExpressionValidator._is_number(n)):
-            raise NotANumber()
+            raise NotANumber("input is not a number")
         elif InputExpressionValidator._out_of_board(x,n) or InputExpressionValidator._out_of_board(y,n):
-            raise OutOfBoard()
+            raise OutOfBoard("coords out of booard")
         else:
             return True
 
@@ -34,4 +34,4 @@ class InputExpressionValidator(AbstractValidator):
 
     @staticmethod
     def _out_of_board(a,n):
-        return (a < 0) or (a > n)
+        return (a < 0) or (a >= n)
