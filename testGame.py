@@ -24,6 +24,12 @@ class TestGame(unittest.TestCase):
         tic_tac_toe.choose_square(1,2)
         self.assertEqual(tic_tac_toe.choose_square(1,2), False)
 
+    def test_if_board_is_empty_after_init_a_game(self):
+        board_size = 3
+        tic_tac_toe = game.Game(board_size, 0)
+        for i in range(board_size):
+            for j in range(board_size):
+                self.assertEqual(tic_tac_toe.board[i][j], game.MarkSquare.FREE)
 
 
 if __name__=='__main__':
