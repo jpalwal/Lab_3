@@ -11,10 +11,11 @@ class Game:
         self.nowPlaying = 'u'
         self.boardSize = board_size
         self.server = server
-        if path.isfile("game.log"):
-            remove("game.log")
-        logging.basicConfig(filename="game.log", level=logging.INFO)
-        logging.info("Game initialization")
+        if not testing:
+            if path.isfile("game.log"):
+                remove("game.log")
+            logging.basicConfig(filename="game.log", level=logging.INFO)
+            logging.info("Game initialization")
 
 
     def print(self, msg):

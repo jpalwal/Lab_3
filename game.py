@@ -4,16 +4,17 @@ import logging
 from os import path, remove
 
 class Game:
-    def __init__(self, board_size):
+    def __init__(self, board_size, playing=1):
         self.checkMove = validator.InputExpressionValidator
         self.emptySquares = board_size**2
         self.board = [[MarkSquare.FREE for x in range(board_size)] for y in range(board_size)]
         self.nowPlaying = 'u'
         self.boardSize = board_size
-        if path.isfile("game.log"):
-            remove("game.log")
-        logging.basicConfig(filename="game.log", level=logging.INFO)
-        logging.info("Game initialization")
+        if playing:
+            if path.isfile("game.log"):
+                remove("game.log")
+            logging.basicConfig(filename="game.log", level=logging.INFO)
+            logging.info("Game initialization")
 
 
     def choose_square(self,x,y):
