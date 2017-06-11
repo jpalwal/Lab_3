@@ -82,8 +82,6 @@ class Game:
 
     def computer_turn(self):
         logging.info("checking whose turn it is")
-        print("check if comp turn")
-        print(self.nowPlaying == 'c')
         return self.nowPlaying == 'c'
 
     def board(self):
@@ -108,7 +106,6 @@ class CheckGameResult(enum.Enum):
 class MakeAndPrintBoard():
     @staticmethod
     def print_board(board):
-        print("print_board")
         print('\n')
         print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
         for i in range(0, len(board.board)):
@@ -125,30 +122,26 @@ class MakeAndPrintBoard():
             print(i, marker)
         print('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
 
+class MakeBoardStrig():
+    @staticmethod
+    def print_board(board):
+        ret = ('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
+        ret += '\n'
+        for i in range(0, len(board.board)):
+            marker=[]
+            for j in range(0, len(board.board[i])):
+                if board.board[i][j] == MarkSquare.FREE:
+                    marker.append('_')
+                elif board.board[i][j] == MarkSquare.CROSS:
+                    marker.append('X')
+                elif board.board[i][j] == MarkSquare.CIRCLE:
+                    marker.append('O')
+                else:
+                    marker.append('_')
+            ret += str(i)
+            ret += str(marker)
+            ret += '\n'
+        ret += ('\t' + ''.join(['{}    '.format(i) for i in range(0, len(board.board))]))
+        return ret
 
-#class Lan:
- #   @staticmethod
-  #  def send_data(connection, data):
-  #      print("send_data")
-  #      connection.sendall('#start#{}#end'.format(data).encode('ASCII'))
-  #  @staticmethod
-  #  def request_data(connection):
-  #      print("request")
-  #      data=''
-  #      while True:
-  #          buffer=connection.recv(16)
-  #          data += buffer.decode('ASCII')
-  #          if '#end' in data:
-  #              break
-  #          elif '#start#' in data:
-  #              data = data.replace('#start#','')
-   #         elif buffer:
-   #             pass
-   #         else:
-   #             break
-   #     return data.replace('#start#','').replace('#end','')
-   # @staticmethod
-   # def send_and_request_data(connection, data):
-   #     print("send and request")
-   #     Lan.send_data(connection,data)
-   #     return Lan.request_data(connection)
+
